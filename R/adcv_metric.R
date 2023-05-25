@@ -59,5 +59,5 @@ adcv_metric_vec <- function(
 
 adcv_metric_impl <- function(truth, estimate, lag, case_weights = NULL) {
     z <- estimate - truth
-    adcf(z, lag)
+    adcf::adcf(z, lag)
 }
