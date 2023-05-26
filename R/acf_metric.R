@@ -16,7 +16,8 @@ acf_metric.data.frame <- function(
     ...,
     lag = 2:vctrs::vec_size(data) - 1,
     na_rm = TRUE,
-    case_weights = NULL) {
+    case_weights = NULL
+) {
     result <- yardstick::curve_metric_summarizer(
         name = "acf_metric",
         fn = acf_metric_vec,
