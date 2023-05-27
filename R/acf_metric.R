@@ -56,7 +56,7 @@ acf_metric_impl <- function(truth, estimate, lag, case_weights = NULL) {
     z <- estimate - truth
     tibble::tibble(
         lag = 0:max(lag),
-        acv = stats::acf(
+        acf = stats::acf(
             z, lag.max = max(lag), type = "correlation", plot = FALSE,
             demean = FALSE
         )$acf |>

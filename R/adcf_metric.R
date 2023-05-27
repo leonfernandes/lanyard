@@ -7,25 +7,24 @@
 #' @param lag Vector of positive integers. This corresponds to the lag at
 #' which distance covariance should be evaluated.
 #' @returns A `tibble` with columns `.metric`, `.estimator` and `.estimate` and
-#' 1 row of values. For `adcv_metric_vec`, a single `numeric` value (or `NA`).
+#' 1 row of values. For `adcf_metric_vec`, a single `numeric` value (or `NA`).
 #' @export
-adcv_metric <- function(data, ...) {
-  UseMethod("adcv_metric")
+adcf_metric <- function(data, ...) {
+    UseMethod("adcf_metric")
 }
 
-#' @rdname adcv_metric
+#' @rdname adcf_metric
 #' @export
-adcv_metric.data.frame <- function(
+adcf_metric.data.frame <- function(
     data,
     truth,
     ...,
     lag = 2:vctrs::vec_size(data) - 1,
     na_rm = TRUE,
-    case_weights = NULL
-) {
+    case_weights = NULL) {
     result <- yardstick::curve_metric_summarizer(
-        name = "adcv_metric",
-        fn = adcv_metric_vec,
+        name = "adcf_metric",
+        fn = adcf_metric_vec,
         data = data,
         truth = !!rlang::enquo(truth),
         ...,
@@ -33,15 +32,16 @@ adcv_metric.data.frame <- function(
         case_weights = !!rlang::enquo(case_weights),
         fn_options = list(lag = lag)
     )
-    curve_finalize(result, data, "adcv_df", "grouped_adcv_df")
+    curve_finalize(result, data, "adcf_df", "grouped_adcf_df")
 }
 
-#' @rdname adcv_metric
+#' @rdname adcf_metric
 #' @export
-adcv_metric_vec <- function(
-    truth, estimate, lag = 2:vctrs::vec_size(truth) - 1, na_rm = TRUE,
-    case_weights = NULL, ...
-) {
+adcf_metric_vec <-
+    function(
+        truth, estimate, lag = 2:vctrs::vec_size(truth) - 1, na_rm = TRUE,
+        case_weights = NULL, ...
+    ) {
     yardstick::check_numeric_metric(truth, estimate, case_weights)
     if (na_rm) {
         result <- yardstick::yardstick_remove_missing(
@@ -55,10 +55,10 @@ adcv_metric_vec <- function(
     ) {
         return(NA_real_)
     }
-    adcv_metric_impl(truth, estimate, lag, case_weights)
+    adcf_metric_impl(truth, estimate, lag, case_weights)
 }
 
-adcv_metric_impl <- function(truth, estimate, lag, case_weights = NULL) {
+adcf_metric_impl <- function(truth, estimate, lag, case_weights = NULL) {
     z <- estimate - truth
-    adcf::adcv(z, lag)
+    adcf::adcf(z, lag)
 }

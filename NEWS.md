@@ -6,3 +6,7 @@
 # lanyard 0.0.1
 
 * First release with basic yardstick metric registration.
+
+# lanyard 0.0.1.9000
+
+* adcf_metric implemented.

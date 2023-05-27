@@ -1,6 +1,6 @@
 Package: lanyard
 Title: Lag Dependence Yardstick Metrics
-Version: 0.0.1
+Version: 0.0.1.9000
 Authors@R: 
     person(
         "Leon", "Fernandes", , "leon.fernandes@columbia.edu",
@@ -15,7 +15,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    adcf (>= 0.0.4.9000),
+    adcf (>= 0.0.5.9001),
     dplyr (>= 1.1.2),
     lifecycle,
     rlang (>= 1.1.1),
