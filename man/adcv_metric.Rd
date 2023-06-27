@@ -4,7 +4,7 @@
 \alias{adcv_metric}
 \alias{adcv_metric.data.frame}
 \alias{adcv_metric_vec}
-\title{Auto distance covariance metric}
+\title{Auto-distance covariance metric}
 \usage{
 adcv_metric(data, ...)
 
@@ -57,5 +57,5 @@ A \code{tibble} with columns \code{.metric}, \code{.estimator} and \code{.estima
 1 row of values. For \code{adcv_metric_vec}, a single \code{numeric} value (or \code{NA}).
 }
 \description{
-Auto distance covariance metric
+Implements serial dependence yardstick metric using auto-distance covariance.
 }
