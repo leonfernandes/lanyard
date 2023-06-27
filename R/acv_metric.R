@@ -18,7 +18,8 @@ acv_metric.data.frame <-
         ...,
         lag = 1:vctrs::vec_size(data) - 1,
         na_rm = TRUE,
-        case_weights = NULL) {
+        case_weights = NULL
+    ) {
         result <- yardstick::curve_metric_summarizer(
             name = "acv_metric",
             fn = acv_metric_vec,

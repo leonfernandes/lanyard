@@ -23,7 +23,8 @@ adcf_metric.data.frame <-
         ...,
         lag = 2:vctrs::vec_size(data) - 1,
         na_rm = TRUE,
-        case_weights = NULL) {
+        case_weights = NULL
+    ) {
         result <- yardstick::curve_metric_summarizer(
             name = "adcf_metric",
             fn = adcf_metric_vec,
