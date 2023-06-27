@@ -1,3 +1,3 @@
-# lanyard 0.0.1.9003
+# lanyard 0.0.2
 
-current development version
+* Basic release.
