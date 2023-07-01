@@ -1,14 +1,13 @@
-#' Auto distance covariance metric
+#' Auto-distance covariance metric
 #'
-#' @inheritParams yardstick::pr_curve
-#' @param truth The column identifier for the true results (that is `numeric`).
-#' @param estimate The column identifier for the predicted results (that is also
-#' `numeric`)
-#' @param lag Vector of positive integers. This corresponds to the lag at
-#' which distance covariance should be evaluated.
-#' @returns A `tibble` with columns `.metric`, `.estimator` and `.estimate` and
-#' 1 row of values. For `adcf_metric_vec`, a single `numeric` value (or `NA`).
+#' @inheritParams acf_metric
+#' @returns A `tibble` of class `adcf_tbl` with columns `lag`,
+#'      `auto_dist_covariance` and `auto_dist_correlation`.
 #' @export
+#' @examples
+#' # adcf ----------------------------------------------------------------------
+#' data <- data.frame(t = rnorm(100), e = rnorm(100))
+#' adcf_metric(data, t, e)
 adcf_metric <-
     function(data, ...) {
         UseMethod("adcf_metric")
@@ -21,7 +20,7 @@ adcf_metric.data.frame <-
         data,
         truth,
         ...,
-        lag = 2:vctrs::vec_size(data) - 1,
+        lags = 2:vctrs::vec_size(data) - 1,
         na_rm = TRUE,
         case_weights = NULL
     ) {
@@ -33,7 +32,7 @@ adcf_metric.data.frame <-
             ...,
             na_rm = na_rm,
             case_weights = !!rlang::enquo(case_weights),
-            fn_options = list(lag = lag)
+            fn_options = list(lags = lags)
         )
         curve_finalize(result, data, "adcf_df", "grouped_adcf_df")
     }
@@ -42,7 +41,7 @@ adcf_metric.data.frame <-
 #' @export
 adcf_metric_vec <-
     function(
-        truth, estimate, lag = 2:vctrs::vec_size(truth) - 1, na_rm = TRUE,
+        truth, estimate, lags = 2:vctrs::vec_size(truth) - 1, na_rm = TRUE,
         case_weights = NULL, ...
     ) {
         yardstick::check_numeric_metric(truth, estimate, case_weights)
@@ -58,13 +57,12 @@ adcf_metric_vec <-
         ) {
             return(NA_real_)
         }
-        adcf_metric_impl(truth, estimate, lag, case_weights)
+        adcf_metric_impl(truth, estimate, lags, case_weights)
     }
 
 adcf_metric_impl <-
-    function(truth, estimate, lag, case_weights = NULL) {
+    function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth
-        ret <- adcf::adcf(z, lag)
-        class(ret) <- c("srl_dep", class(ret))
-        ret
+        adcf::adcf(z, lags) |>
+            tibble::new_tibble(class = "adcf_tbl")
     }

@@ -12,7 +12,7 @@ pacf_metric(data, ...)
   data,
   truth,
   ...,
-  lag = 2:vctrs::vec_size(data) - 1,
+  lags = 2:vctrs::vec_size(data) - 1,
   na_rm = TRUE,
   case_weights = NULL
 )
@@ -20,7 +20,7 @@ pacf_metric(data, ...)
 pacf_metric_vec(
   truth,
   estimate,
-  lag = 0:1,
+  lags = 0:1,
   na_rm = TRUE,
   case_weights = NULL,
   ...
@@ -39,7 +39,7 @@ the columns should be the same as the factor levels of \code{truth}.}
 
 \item{truth}{The column identifier for the true results (that is \code{numeric}).}
 
-\item{lag}{Vector of positive integers. This corresponds to the lag at
+\item{lags}{Vector of positive integers. This corresponds to the lags at
 which distance covariance should be evaluated.}
 
 \item{na_rm}{A \code{logical} value indicating whether \code{NA}
@@ -53,9 +53,14 @@ in \code{data}. For \verb{_vec()} functions, a numeric vector.}
 \code{numeric})}
 }
 \value{
-A \code{tibble} with columns \code{.metric}, \code{.estimator} and \code{.estimate} and
-1 row of values. For \code{pacf_metric_vec}, a single \code{numeric} value (or \code{NA}).
+A \code{tibble} of class \code{pacf_tbl} with columns \code{lags} and
+\code{partial_autocorrelation}.
 }
 \description{
 Partial autocorrelation metric
+}
+\examples{
+# pacf ----------------------------------------------------------------------
+data <- data.frame(t = rnorm(100), e = rnorm(100))
+pacf_metric(data, t, e)
 }
