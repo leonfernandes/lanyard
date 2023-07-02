@@ -3,6 +3,7 @@
 #' @param object a data.frame containing residuals.
 #' @param metrics a list of `lanyard` metrics.
 #' @param resid_col column name corresponding to residuals.
+#' @param ... unused.
 #' @export
 calibrate_metrics <-
     function(object, ...) {
@@ -12,7 +13,7 @@ calibrate_metrics <-
 #' @rdname calibrate_metrics
 #' @export
 calibrate_metrics.data.frame <-
-    function(object, resid_col, metrics) {
+    function(object, resid_col, metrics, ...) {
         object <-
             object |>
             # add dummy column of zeroes

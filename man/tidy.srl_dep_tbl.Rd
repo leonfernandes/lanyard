@@ -4,7 +4,7 @@
 \alias{tidy.srl_dep_tbl}
 \title{Tidy method for serial dependence}
 \usage{
-\method{tidy}{srl_dep_tbl}(object)
+tidy.srl_dep_tbl(object)
 }
 \arguments{
 \item{object}{an \code{tibble} of class \code{srl_dep_tbl}.}

@@ -7,10 +7,12 @@
 \usage{
 calibrate_metrics(object, ...)
 
-\method{calibrate_metrics}{data.frame}(object, resid_col, metrics)
+\method{calibrate_metrics}{data.frame}(object, resid_col, metrics, ...)
 }
 \arguments{
 \item{object}{a data.frame containing residuals.}
+
+\item{...}{unused.}
 
 \item{resid_col}{column name corresponding to residuals.}
 
