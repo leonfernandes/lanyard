@@ -91,5 +91,5 @@ dhsic_impl <-
             dhsic_scaled = dhsic_scaled_raw
         ) |>
             dplyr::filter(lag %in% lags) |>
-            tibble::new_tibble(class = "dhsic_tbl")
+            tibble::new_tibble(class = "srl_dep_tbl")
     }

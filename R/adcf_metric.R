@@ -64,5 +64,5 @@ adcf_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth
         adcf::adcf(z, lags) |>
-            tibble::new_tibble(class = "adcf_tbl")
+            tibble::new_tibble(class = "srl_dep_tbl")
     }

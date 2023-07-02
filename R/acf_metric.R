@@ -84,5 +84,5 @@ acf_metric_impl <-
             autocorrelation = acf_raw
         ) |>
             dplyr::filter(lag %in% lags) |>
-            tibble::new_tibble(class = "acf_tbl")
+            tibble::new_tibble(class = "srl_dep_tbl")
     }

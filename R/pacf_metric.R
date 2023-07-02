@@ -76,5 +76,5 @@ pacf_metric_impl <-
             partial_autocorrelation = pacf_raw
         ) |>
             dplyr::filter(lag %in% lags) |>
-            tibble::new_tibble(class = "pacf_tbl")
+            tibble::new_tibble(class = "srl_dep_tbl")
     }
