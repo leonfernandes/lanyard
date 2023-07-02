@@ -3,14 +3,17 @@
 \name{calibrate_metrics}
 \alias{calibrate_metrics}
 \alias{calibrate_metrics.data.frame}
+\alias{calibrate_metrics.numeric}
 \title{Calculates a set of metrics}
 \usage{
 calibrate_metrics(object, ...)
 
 \method{calibrate_metrics}{data.frame}(object, resid_col, metrics, ...)
+
+\method{calibrate_metrics}{numeric}(object, metrics, ...)
 }
 \arguments{
-\item{object}{a data.frame containing residuals.}
+\item{object}{a data.frame or numeric vector containing residuals}
 
 \item{...}{unused.}
 

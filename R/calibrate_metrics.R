@@ -1,6 +1,6 @@
 #' Calculates a set of metrics
 #'
-#' @param object a data.frame containing residuals.
+#' @param object a data.frame or numeric vector containing residuals
 #' @param metrics a list of `lanyard` metrics.
 #' @param resid_col column name corresponding to residuals.
 #' @param ... unused.
@@ -25,4 +25,12 @@ calibrate_metrics.data.frame <-
                 ) |>
             purrr::list_rbind() |>
             tibble::new_tibble(class = "metric_tbl")
+    }
+
+#' @rdname calibrate_metrics
+#' @export
+calibrate_metrics.numeric <-
+    function(object, metrics, ...) {
+        object <- tibble::tibble(.resid = object)
+        calibrate_metrics(object, ".resid", metrics, ...)
     }

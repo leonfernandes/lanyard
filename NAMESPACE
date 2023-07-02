@@ -3,6 +3,7 @@
 S3method(acf_metric,data.frame)
 S3method(adcf_metric,data.frame)
 S3method(calibrate_metrics,data.frame)
+S3method(calibrate_metrics,numeric)
 S3method(dhsic_metric,data.frame)
 S3method(pacf_metric,data.frame)
 export(acf_metric)
