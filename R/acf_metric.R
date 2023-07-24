@@ -77,6 +77,7 @@ acf_metric_impl <-
             as.numeric()
         # use autocovariance to get autocorrelation
         acf_raw <- acv_raw / acv_raw[1]
+        lag <- rlang::sym("lag")
         # return as tibble
         tibble::tibble(
             lag = 0:max(lags),

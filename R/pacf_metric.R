@@ -71,6 +71,7 @@ pacf_metric_impl <-
         )$acf |>
             as.numeric()
         # return as tibble
+        lag <- rlang::sym("lag")
         tibble::tibble(
             lag = 1:max(lags),
             partial_autocorrelation = pacf_raw

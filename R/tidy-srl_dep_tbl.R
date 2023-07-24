@@ -11,6 +11,10 @@ tidy.srl_dep_tbl <-
 
 tidy_srl_dep_impl <-
     function(object) {
+        lag <- rlang::sym("lag")
+        .metric <- rlang::sym(".metric")
+        .estimator <- rlang::sym(".estimator")
+        .estimate <- rlang::sym(".estimate")
         object |>
             tidyr::pivot_longer(
                 cols = -lag, names_to = ".metric", values_to = ".estimate"

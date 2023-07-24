@@ -84,6 +84,7 @@ dhsic_impl <-
                 }
             )
         dhsic_scaled_raw <- dhsic_raw / dhsic_raw[1]
+        lag <- rlang::sym("lag")
         # return as tibble
         tibble::tibble(
             lag = my_lags,
