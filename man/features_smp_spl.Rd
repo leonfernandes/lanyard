@@ -4,10 +4,12 @@
 \alias{features.smp_spl}
 \title{Features for sample splitting}
 \usage{
-features.smp_spl(.tbl, features, ...)
+features.smp_spl(.tbl, .var, features, ...)
 }
 \arguments{
 \item{.tbl}{A dataset}
+
+\item{.var}{The variable to compute features on.}
 
 \item{features}{A list of functions (or lambda expressions) for the features to compute. \code{\link[fabletools:feature_set]{feature_set()}} is a useful helper for building sets of features.}
 

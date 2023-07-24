@@ -1,14 +1,16 @@
 #' Features for sample splitting
 #'
 #' @inheritParams fabletools::features
-#' @export
+#' @param .var The variable to compute features on.
+#' @rdname features_smp_spl
+#' @exportS3Method fabletools::features
 features.smp_spl <-
-    function(.tbl, features, ...) {
-        .assessment <- rlang::sym(".assessment")
+    function(.tbl, .var, features, ...) {
+        .var <- rlang::enquo(.var)
         .tbl |>
             dplyr::mutate(
-                .assessment = purrr::map(
-                    .assessment,
+                "{{.var}}" = purrr::map(
+                    !!.var,
                     ~ .x |>
                         dplyr::mutate(
                             .features = purrr::map(
