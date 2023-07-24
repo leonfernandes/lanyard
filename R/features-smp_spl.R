@@ -9,7 +9,7 @@ features.smp_spl <-
         .var <- rlang::enquo(.var)
         .tbl |>
             dplyr::mutate(
-                "{{.var}}" = purrr::map(
+                .assessment = purrr::map(
                     !!.var,
                     ~ .x |>
                         dplyr::mutate(
