@@ -3,7 +3,7 @@
 #' @param object an `tibble` of class `srl_dep_tbl`.
 #' @returns a `tibble` with columns `.metric`, `.estimator`, `lag` and
 #'      `.estimate`.
-#' @export
+#' @exportS3Method generics::tidy
 tidy.srl_dep_tbl <-
     function(object) {
         tidy_srl_dep_impl(object)
