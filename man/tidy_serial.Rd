@@ -12,8 +12,8 @@ tidy.srl_dep_tbl(x, ...)
 \item{...}{Additional arguments to tidying method.}
 }
 \value{
-a \code{tibble} with columns \code{.metric}, \code{.estimator}, \code{lag} and
-\code{.estimate}.
+a \code{tibble} with columns \code{metric}, \code{estimator}, \code{lag} and
+\code{estimate}.
 }
 \description{
 Tidy method for serial dependence
