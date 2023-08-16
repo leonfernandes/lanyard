@@ -60,6 +60,14 @@ adcf_metric_vec <-
         adcf_metric_impl(truth, estimate, lags, case_weights)
     }
 
+#' @rdname adcf_metric
+#' @export
+adcf_metric.numeric <-
+    function(data, lags = 1, case_weights = NULL, ...) {
+        estimate <- numeric(vctrs::vec_size(data))
+        adcf_metric_impl(data, estimate, lags, case_weights)
+    }
+
 adcf_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth

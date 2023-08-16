@@ -8,9 +8,15 @@
 \usage{
 calibrate_metrics(object, ...)
 
-\method{calibrate_metrics}{data.frame}(object, resid_col, metrics, ...)
+\method{calibrate_metrics}{data.frame}(
+  object,
+  resid_col,
+  metrics,
+  lags = 2:vctrs::vec_size(object) - 1,
+  ...
+)
 
-\method{calibrate_metrics}{numeric}(object, metrics, ...)
+\method{calibrate_metrics}{numeric}(object, metrics, lags = 2:vctrs::vec_size(object) - 1, ...)
 }
 \arguments{
 \item{object}{a data.frame or numeric vector containing residuals}

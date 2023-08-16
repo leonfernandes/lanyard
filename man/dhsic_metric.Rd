@@ -4,6 +4,7 @@
 \alias{dhsic_metric}
 \alias{dhsic_metric.data.frame}
 \alias{dhsic_metric_vec}
+\alias{dhsic_metric.numeric}
 \title{Multiavariate Hilbert Schmidt Independence Criterion metric}
 \usage{
 dhsic_metric(data, ...)
@@ -25,6 +26,8 @@ dhsic_metric_vec(
   case_weights = NULL,
   ...
 )
+
+\method{dhsic_metric}{numeric}(data, lags = 1, case_weights = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame} containing the columns specified by \code{truth} and

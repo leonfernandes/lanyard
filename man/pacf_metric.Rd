@@ -4,6 +4,7 @@
 \alias{pacf_metric}
 \alias{pacf_metric.data.frame}
 \alias{pacf_metric_vec}
+\alias{pacf_metric.numeric}
 \title{Partial autocorrelation metric}
 \usage{
 pacf_metric(data, ...)
@@ -25,6 +26,8 @@ pacf_metric_vec(
   case_weights = NULL,
   ...
 )
+
+\method{pacf_metric}{numeric}(data, lags = 1, case_weights = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame} containing the columns specified by \code{truth} and

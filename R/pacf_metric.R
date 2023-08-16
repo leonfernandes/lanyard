@@ -59,6 +59,14 @@ pacf_metric_vec <-
         pacf_metric_impl(truth, estimate, lags, case_weights)
     }
 
+#' @rdname pacf_metric
+#' @export
+pacf_metric.numeric <-
+    function(data, lags = 1, case_weights = NULL, ...) {
+        estimate <- numeric(vctrs::vec_size(data))
+        pacf_metric_impl(data, estimate, lags, case_weights)
+    }
+
 pacf_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth

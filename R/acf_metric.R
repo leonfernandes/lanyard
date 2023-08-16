@@ -65,6 +65,14 @@ acf_metric_vec <-
         acf_metric_impl(truth, estimate, lags, case_weights)
     }
 
+#' @rdname acf_metric
+#' @export
+acf_metric.numeric <-
+    function(data, lags = 1, case_weights = NULL, ...) {
+        estimate <- numeric(vctrs::vec_size(data))
+        acf_metric_impl(data, estimate, lags, case_weights)
+    }
+
 acf_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth

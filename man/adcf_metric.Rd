@@ -4,6 +4,7 @@
 \alias{adcf_metric}
 \alias{adcf_metric.data.frame}
 \alias{adcf_metric_vec}
+\alias{adcf_metric.numeric}
 \title{Auto-distance covariance metric}
 \usage{
 adcf_metric(data, ...)
@@ -25,6 +26,8 @@ adcf_metric_vec(
   case_weights = NULL,
   ...
 )
+
+\method{adcf_metric}{numeric}(data, lags = 1, case_weights = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame} containing the columns specified by \code{truth} and

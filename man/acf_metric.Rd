@@ -4,6 +4,7 @@
 \alias{acf_metric}
 \alias{acf_metric.data.frame}
 \alias{acf_metric_vec}
+\alias{acf_metric.numeric}
 \title{Autocorrelation metric}
 \usage{
 acf_metric(data, ...)
@@ -25,6 +26,8 @@ acf_metric_vec(
   case_weights = NULL,
   ...
 )
+
+\method{acf_metric}{numeric}(data, lags = 1, case_weights = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame} containing the columns specified by \code{truth} and

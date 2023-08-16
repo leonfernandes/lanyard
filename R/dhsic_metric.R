@@ -59,6 +59,14 @@ dhsic_metric_vec <-
         dhsic_metric_impl(truth, estimate, lags, case_weights)
     }
 
+#' @rdname dhsic_metric
+#' @export
+dhsic_metric.numeric <-
+    function(data, lags = 1, case_weights = NULL, ...) {
+        estimate <- numeric(vctrs::vec_size(data))
+        dhsic_metric_impl(data, estimate, lags, case_weights)
+    }
+
 dhsic_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
         z <- estimate - truth
