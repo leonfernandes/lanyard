@@ -13,14 +13,16 @@ calibrate_metrics <-
 #' @rdname calibrate_metrics
 #' @export
 calibrate_metrics.data.frame <-
-    function(object, resid_col, metrics, ...) {
+    function(
+        object, resid_col, metrics, lags = 2:vctrs::vec_size(object) - 1, ...
+    ) {
         object <-
             object |>
             # add dummy column of zeroes
             dplyr::mutate(.temp = 0)
         metrics |>
             purrr::map(
-                ~ .x(object, resid_col, .temp, ...) |>
+                ~ .x(data = object, truth = resid_col, .temp, lags = lags) |>
                     generics::tidy()
                 ) |>
             purrr::list_rbind() |>
@@ -30,7 +32,12 @@ calibrate_metrics.data.frame <-
 #' @rdname calibrate_metrics
 #' @export
 calibrate_metrics.numeric <-
-    function(object, metrics, ...) {
-        object <- tibble::tibble(.resid = object)
-        calibrate_metrics(object, ".resid", metrics, ...)
+    function(object, metrics, lags = 2:vctrs::vec_size(object) - 1, ...) {
+        metrics |>
+            purrr::map(
+                ~ .x(data = object, lags) |>
+                    generics::tidy()
+            ) |>
+            purrr::list_rbind() |>
+            tibble::new_tibble(class = "metric_tbl")
     }

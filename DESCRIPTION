@@ -1,6 +1,6 @@
 Package: lanyard
 Title: Lag Dependence Yardstick Metrics
-Version: 0.0.2.9012
+Version: 0.0.2.9013
 Authors@R: 
     person(
         "Leon", "Fernandes", , "leon.fernandes@columbia.edu",
