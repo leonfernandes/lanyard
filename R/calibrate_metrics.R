@@ -20,7 +20,7 @@ calibrate_metrics.data.frame <-
             dplyr::mutate(.temp = 0)
         metrics |>
             purrr::map(
-                ~ .x(object, resid_col, .temp) |>
+                ~ .x(data = object, truth = resid_col, estimate = .temp) |>
                     generics::tidy()
                 ) |>
             purrr::list_rbind() |>
