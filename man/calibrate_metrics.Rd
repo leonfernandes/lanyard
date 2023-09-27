@@ -26,6 +26,8 @@ calibrate_metrics(object, ...)
 \item{resid_col}{column name corresponding to residuals.}
 
 \item{metrics}{a list of \code{lanyard} metrics.}
+
+\item{lags}{lags at which to calculate metrics.}
 }
 \description{
 Calculates a set of metrics

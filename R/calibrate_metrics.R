@@ -3,6 +3,7 @@
 #' @param object a data.frame or numeric vector containing residuals
 #' @param metrics a list of `lanyard` metrics.
 #' @param resid_col column name corresponding to residuals.
+#' @param lags lags at which to calculate metrics.
 #' @param ... unused.
 #' @export
 calibrate_metrics <-

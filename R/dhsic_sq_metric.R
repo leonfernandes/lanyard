@@ -7,15 +7,15 @@
 #' @examples
 #' # dhsic ---------------------------------------------------------------------
 #' data <- data.frame(t = rnorm(100), e = rnorm(100))
-#' dhsic_metric(data, t, e)
-dhsic_metric <-
+#' dhsic_sq_metric(data, t, e)
+dhsic_sq_metric <-
     function(data, ...) {
-        UseMethod("dhsic_metric")
+        UseMethod("dhsic_sq_metric")
     }
 
-#' @rdname dhsic_metric
+#' @rdname dhsic_sq_metric
 #' @export
-dhsic_metric.data.frame <-
+dhsic_sq_metric.data.frame <-
     function(
         data,
         truth,
@@ -25,8 +25,8 @@ dhsic_metric.data.frame <-
         case_weights = NULL
     ) {
         result <- yardstick::curve_metric_summarizer(
-            name = "dhsic_metric",
-            fn = dhsic_metric_vec,
+            name = "dhsic_sq_metric",
+            fn = dhsic_sq_metric_vec,
             data = data,
             truth = !!rlang::enquo(truth),
             ...,
@@ -37,9 +37,9 @@ dhsic_metric.data.frame <-
         curve_finalize(result, data, "dhsic_df", "grouped_dhsic_df")
     }
 
-#' @rdname dhsic_metric
+#' @rdname dhsic_sq_metric
 #' @export
-dhsic_metric_vec <-
+dhsic_sq_metric_vec <-
     function(
         truth, estimate, lags = 0:1, na_rm = TRUE, case_weights = NULL, ...
     ) {
@@ -56,49 +56,19 @@ dhsic_metric_vec <-
         ) {
             return(NA_real_)
         }
-        dhsic_metric_impl(truth, estimate, lags, case_weights)
+        dhsic_sq_metric_impl(truth, estimate, lags, case_weights)
     }
 
-#' @rdname dhsic_metric
+#' @rdname dhsic_sq_metric
 #' @export
-dhsic_metric.numeric <-
+dhsic_sq_metric.numeric <-
     function(data, lags = 1, case_weights = NULL, ...) {
         estimate <- numeric(vctrs::vec_size(data))
-        dhsic_metric_impl(data, estimate, lags, case_weights)
+        dhsic_sq_metric_impl(data, estimate, lags, case_weights)
     }
 
-dhsic_metric_impl <-
+dhsic_sq_metric_impl <-
     function(truth, estimate, lags, case_weights = NULL) {
-        z <- estimate - truth
-        dhsic_impl(z, lags)
-    }
-
-dhsic_impl <-
-    function(z, lags) {
-        n <- vctrs::vec_size(z)
-        my_lags <- lags
-        if (lags[1] != 0) {
-            my_lags <- c(0, lags)
-        }
-        dhsic_raw <-
-            my_lags |>
-            purrr::map_dbl(
-                \(h) {
-                    x <- vctrs::vec_slice(z, 1:(n - h)) |>
-                        matrix(ncol = 1)
-                    y <- vctrs::vec_slice(z, (h + 1):n) |>
-                        matrix(ncol = 1)
-                    dHSIC::dhsic(x, y)$dHSIC
-                }
-            )
-        dhsic_scaled_raw <- dhsic_raw / dhsic_raw[1]
-        lag <- rlang::sym("lag")
-        # return as tibble
-        tibble::tibble(
-            lag = my_lags,
-            dhsic_sq = dhsic_raw,
-            dhsic_scaled_sq = dhsic_scaled_raw
-        ) |>
-            dplyr::filter(lag %in% lags) |>
-            tibble::new_tibble(class = "srl_dep_tbl")
+        z <- (estimate - truth)^2
+        dhsic_impl(z - mean(z), lags)
     }
