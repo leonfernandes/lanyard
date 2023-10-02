@@ -29,4 +29,12 @@ You can install the development version of lanyard like so:
 pak::pkg_install("leonfernandes/lanyard")
 ```
 
-<!-- ## Example -->
+## Example
+
+As an example, you can calculate the autocovariance/autocorrelation using the `acf_metric` function.
+
+```{r demo}
+library(lanyard)
+data <- data.frame(t = rnorm(100), e = rnorm(100)) # simulate data
+acf_metric(data, t, e) # get acf
+```

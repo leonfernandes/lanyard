@@ -1,5 +1,5 @@
 Package: lanyard
-Title: Lag Dependence Yardstick Metrics
+Title: Serial Dependence Yardstick Metrics
 Version: 0.0.4
 Authors@R: 
     person(

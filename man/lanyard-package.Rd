@@ -4,7 +4,7 @@
 \name{lanyard-package}
 \alias{lanyard}
 \alias{lanyard-package}
-\title{lanyard: Lag Dependence Yardstick Metrics}
+\title{lanyard: Serial Dependence Yardstick Metrics}
 \description{
 This package makes available serial dependence metrics including the autocorrelation, partial autocorrelation and auto-distance correlation. These metrics are registered with the `yardstick` package.
 }
