@@ -1,6 +1,6 @@
 Package: lanyard
 Title: Serial Dependence Yardstick Metrics
-Version: 0.0.4
+Version: 0.0.4.9000
 Authors@R: 
     person(
         "Leon", "Fernandes", , "leon.fernandes@columbia.edu",
@@ -15,7 +15,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
-    adcf (>= 0.0.6.9001),
+    adcf (>= 0.0.7),
     dHSIC (>= 2.1),
     dplyr (>= 1.1.2),
     generics (>= 0.1.3),
@@ -30,3 +30,5 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Remotes:  
+    github::leonfernandes/adcf
